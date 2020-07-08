@@ -1,0 +1,8 @@
+---
+- name: combine postgresql_backup configuration
+  set_fact:
+    ranger: "{{ _postgresql_backup|combine(postgresql_backup, recursive=True) }}"
+
+- include_tasks: versioncheck.yml
+  when: submodules_versioncheck|bool
+
