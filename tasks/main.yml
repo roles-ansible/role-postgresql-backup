@@ -7,3 +7,12 @@
   when: submodules_versioncheck|bool
 
 - include_tasks: packages.yml
+
+- name: generate backup script
+  become: true
+  template:
+    src: templates/postgresql-backup-script.sh
+    dest: /etc/postgresql-backup-script.sh
+    owner: "{{ postgresql_backup.user }}"
+    backup: true
+    mode: 0755
