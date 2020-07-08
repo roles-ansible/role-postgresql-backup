@@ -16,3 +16,13 @@
     owner: "{{ postgresql_backup.user }}"
     backup: true
     mode: 0755
+
+- name: add backup script as cronjob
+  become: true
+  cron:
+    name: backup postgres database
+    cron_file: /etc/crontab
+    minute: "{{ postgresql_backup.cron_minute | default( '*' ) }}"
+    hour: "{{ postgresql_backup.cron_hour | default( '0' ) }}"
+    job: /etc/postgresql-backup-script.sh
+    user: "{{ postgresql_backup.user }}"

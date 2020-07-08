@@ -15,7 +15,7 @@ create_backup_dir() {
 
 backup_databases() {
   {% for db in postgresql_backup.databases %}
-  if (umask 077 && pg_dump -F c -h "{{ db.host | defaul( 'localhost' ) }}" -U "{{ db.user | default( 'postgres' ) }}" -p "{{ db.port | default( '5432' ) }}" "{{ db.name }}" -f "{{ db.name }}.in_progress.psql"); then
+  if (umask 077 && pg_dump -F c -h "{{ db.host | default( 'localhost' ) }}" -U "{{ db.user | default( 'postgres' ) }}" -p "{{ db.port | default( '5432' ) }}" "{{ db.name }}" -f "{{ db.name }}.in_progress.psql"); then
 	  mv "{{ db.name }}.in_progress.psql" "{{ db.name }}.psql"
   else
 	  return 1
