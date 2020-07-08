@@ -1,0 +1,6 @@
+---
+- name: "Install PostgreSQL client"
+  become: true
+  package:
+    name: "{{ postgresql_backup.required_packages }}"
+    state: present
