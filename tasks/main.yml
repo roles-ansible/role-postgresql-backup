@@ -1,7 +1,7 @@
 ---
 - name: combine postgresql_backup configuration
   set_fact:
-    ranger: "{{ _postgresql_backup|combine(postgresql_backup, recursive=True) }}"
+    postgresql_backup: "{{ _postgresql_backup|combine(postgresql_backup, recursive=True) }}"
 
 - include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
@@ -26,3 +26,4 @@
     hour: "{{ postgresql_backup.cron_hour | default( '0' ) }}"
     job: /opt/postgresql-backup-script.sh >/dev/null 2>&1
     user: "{{ postgresql_backup.user }}"
+  when: postgresql_backup.cron

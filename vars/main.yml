@@ -2,13 +2,15 @@
 _postgresql_backup:
   required_packages:
     - postgresql-client
+    - cron
   backup_dir: /var/backup/postgresql
   date_format: '%Y-%m-%d_%H-%M'
   user: root
+  cron: true
   cron_minute: '*'
   cron_hour: '0'
   databases: []
 
 # versionscheck
-playbook_version_number: 20 # should be int
+playbook_version_number: 21 # should be int
 playbook_version_path: 'role-postgresql-backup_roles-ansible_github.com.version' # unique string
