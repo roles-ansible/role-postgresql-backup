@@ -10,7 +10,6 @@ postgresql_backup:
   user: root
   cron_minute: '*'
   cron_hour: '0'
-  compress: false
   databases: []
 #   - name: psql_database_name
 #     user: psql_database_user
