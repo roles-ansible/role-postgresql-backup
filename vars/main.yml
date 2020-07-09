@@ -1,8 +1,4 @@
 ---
-# versionscheck
-playbook_version_number: 17 # should be int
-playbook_version_path: 'role-postgresql-backup_roles-ansible_github.com.version' # unique string
-
 _postgresql_backup:
   required_packages:
     - postgresql-client
@@ -12,3 +8,7 @@ _postgresql_backup:
   cron_minute: '*'
   cron_hour: '0'
   databases: []
+
+# versionscheck
+playbook_version_number: 18 # should be int
+playbook_version_path: 'role-postgresql-backup_roles-ansible_github.com.version' # unique string
