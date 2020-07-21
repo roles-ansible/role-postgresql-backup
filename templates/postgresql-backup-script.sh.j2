@@ -20,7 +20,9 @@ backup_databases() {
   {% endif %}
   if (umask 077 && pg_dump -F {{ postgresql_backup.export_option | string }} -h "{{ db.host | default( 'localhost' ) }}" -U "{{ db.user | default( 'postgres' ) }}" -p "{{ db.port | default( '5432' ) }}" "{{ db.name }}" -f "{{ db.name }}.in_progress.psql"); then
 	  {% if postgresql_backup.create_tar_gz %}
+    mv "{{ db.name }}.in_progress.psql" "{{ db.name }}.psql"
     tar -czvf "{{ db.name }}.psql.tar.gz" "{{ db.name }}.in_progress.psql"
+    rm "{{ db.name }}.psql"
     {% else %}
     mv "{{ db.name }}.in_progress.psql" "{{ db.name }}.psql"
     {% endif %}

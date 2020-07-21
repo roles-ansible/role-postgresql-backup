@@ -4,3 +4,10 @@
   package:
     name: "{{ postgresql_backup.required_packages }}"
     state: present
+
+- name: "Install tar and gzip"
+  become: true
+  package:
+    name: "{{ postgresql_backup.optional_packages }}"
+    state: present
+  when: postgresql_backup.create_tar_gz | bool

@@ -6,6 +6,9 @@ postgresql_backup:
   required_packages:
     - postgresql-client
     - cron
+  optional_packages:
+    - tar
+    - gzip
   backup_dir: /var/backup/postgresql
   date_format: '%Y-%m-%d_%H-%M'
   user: root
