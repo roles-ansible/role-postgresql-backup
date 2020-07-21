@@ -17,5 +17,5 @@ _postgresql_backup:
   databases: []
 
 # versionscheck
-playbook_version_number: 23 # should be int
+playbook_version_number: 24 # should be int
 playbook_version_path: 'role-postgresql-backup_roles-ansible_github.com.version' # unique string
