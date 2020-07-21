@@ -59,6 +59,23 @@ postgresql_backup:
      port: 5432
 ```
 
++ Export Option for pg_dump.
+
+> ``p`` – plain-text SQL script
+> ``c`` – custom-format archive
+> ``d`` – directory-format archive
+> ``t`` – tar-format archive
+```yaml
+postgresql_backup:
+  export_option: "p"
+```
+
++ save backup as tar.gz
+```yaml
+postgresql_backup:
+  create_tar_gz: true
+```
+
 + Perform basic versionscheck *(true is recomended)*
 ```
 submodules_versioncheck: false

@@ -12,6 +12,8 @@ postgresql_backup:
   cron: true
   cron_minute: '*'
   cron_hour: '0'
+  export_option: 'p'
+  create_tar_gz: true
   databases: []
 #   - name: psql_database_name
 #     user: psql_database_user

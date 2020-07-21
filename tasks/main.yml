@@ -11,7 +11,7 @@
 - name: generate backup script
   become: true
   template:
-    src: templates/postgresql-backup-script.sh
+    src: templates/postgresql-backup-script.sh.j2
     dest: /opt/postgresql-backup-script.sh
     owner: "{{ postgresql_backup.user }}"
     backup: true
