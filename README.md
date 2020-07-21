@@ -1,10 +1,6 @@
 # role-postgresql-backup
 Ansible role to automaticcally backup your postgresql database you created with ansible
 
-```
-WÖRK IN PROGRESS, obviously!
-```
-
  Configuration
 ------------------
 
@@ -79,3 +75,10 @@ postgresql_backup:
 ```
 submodules_versioncheck: false
 ```
+
+ Testing
+---
+
+This role is tested with different github actions. [-> Link](https://github.com/roles-ansible/role-postgresql-backup/actions)
+
+Feel free to add some molecule if you like!
