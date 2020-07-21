@@ -60,11 +60,10 @@ postgresql_backup:
 ```
 
 + Export Option for pg_dump.
-
-> ``p`` – plain-text SQL script
-> ``c`` – custom-format archive
-> ``d`` – directory-format archive
-> ``t`` – tar-format archive
+> - ``p`` – plain-text SQL script
+> - ``c`` – custom-format archive
+> - ``d`` – directory-format archive
+> - ``t`` – tar-format archive
 ```yaml
 postgresql_backup:
   export_option: "p"
