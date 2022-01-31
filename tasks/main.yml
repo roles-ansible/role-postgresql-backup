@@ -21,7 +21,7 @@
   become: true
   cron:
     name: backup postgres database
-    cron_file: /etc/crontab
+    cron_file: 'wingcon_psql'
     minute: "{{ postgresql_backup.cron_minute | default( '*' ) }}"
     hour: "{{ postgresql_backup.cron_hour | default( '0' ) }}"
     job: /opt/postgresql-backup-script.sh >/dev/null 2>&1
