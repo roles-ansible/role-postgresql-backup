@@ -1,29 +1,32 @@
 ---
-- name: combine postgresql_backup configuration
-  set_fact:
-    postgresql_backup: "{{ _postgresql_backup|combine(postgresql_backup, recursive=True) }}"
+- name: Combine postgresql_backup configuration
+  ansible.builtin.set_fact:
+    postgresql_backup: "{{ _postgresql_backup | combine(postgresql_backup, recursive=true) }}"
 
-- include_tasks: versioncheck.yml
+- name: Run optional versionscheck
+  ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
-- include_tasks: packages.yml
+- name: Install required Packages
+  ansible.builtin.include_tasks: packages.yml
 
-- name: generate backup script
+- name: Generate backup script
   become: true
-  template:
+  ansible.builtin.template:
     src: templates/postgresql-backup-script.sh.j2
     dest: /opt/postgresql-backup-script.sh
     owner: "{{ postgresql_backup.user }}"
     backup: true
     mode: 0755
 
-- name: add backup script as cronjob
+# TODO: Change to systemd timer!
+- name: Add backup script as cronjob
   become: true
-  cron:
+  ansible.builtin.cron:
     name: backup postgres database
     cron_file: 'wingcon_psql'
-    minute: "{{ postgresql_backup.cron_minute | default( '*' ) }}"
-    hour: "{{ postgresql_backup.cron_hour | default( '0' ) }}"
+    minute: "{{ postgresql_backup.cron_minute | default('*') }}"
+    hour: "{{ postgresql_backup.cron_hour | default('0') }}"
     job: /opt/postgresql-backup-script.sh >/dev/null 2>&1
     user: "{{ postgresql_backup.user }}"
   when: postgresql_backup.cron
